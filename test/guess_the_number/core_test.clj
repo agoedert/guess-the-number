@@ -25,16 +25,16 @@
       (is (= "Too high" (guesser 51))))
       
   (testing "Output for correct user guess"
-    (assert-console-output "You guessed the number, congratulations!\n" "50"))
+    (assert-console-output "You guessed the number in 1 attempt(s), congratulations!\n" "50"))
           
   (testing "Output for user guess too low"
-    (assert-console-output "Too low, try again....\nYou guessed the number, congratulations!\n" "49" "50"))
+    (assert-console-output "Too low, try again....\nYou guessed the number in 2 attempt(s), congratulations!\n" "49" "50"))
           
   (testing "Output for user guess too high"
-    (assert-console-output "Too high, try again....\nYou guessed the number, congratulations!\n" "51" "50"))
+    (assert-console-output "Too high, try again....\nYou guessed the number in 2 attempt(s), congratulations!\n" "51" "50"))
 
   (testing "Output for valid range indication"
     (with-redefs [create-number-guesser (constantly guesser)]
-      (is (= "Choose a value between 1 and 100\nYou guessed the number, congratulations!\n"
+      (is (= "Choose a value between 1 and 100\nYou guessed the number in 1 attempt(s), congratulations!\n"
         (with-in-str (make-input '("50"))
           (with-out-str (-main))))))))
